@@ -902,10 +902,10 @@
 <h2>4. Technical Architecture & Performance Specifications</h2>
 <pre class='mermaid'>
 graph TD
-    Client[Mobile App / Web Client] -->|WebSockets| Gateway[API Gateway / Load Balancer]
-    Gateway -->|Publish Event| PubSub[Redis Pub/Sub Layer]
-    PubSub -->|Live State| Workers[Real-time Match Workers]
-    Workers -->|Write| Database[(PostgreSQL db)]
+    Client["Mobile App / Web Client"] -->|WebSockets| Gateway["API Gateway / Load Balancer"]
+    Gateway -->|Publish Event| PubSub["Redis Pub/Sub Layer"]
+    PubSub -->|Live State| Workers["Real-time Match Workers"]
+    Workers -->|Write| Database[("PostgreSQL Database")]
 </pre>
 <ul>
 <li><strong>Protocol</strong>: WebSockets for low-latency chat transmission and server-sent events for live match score updates.</li>

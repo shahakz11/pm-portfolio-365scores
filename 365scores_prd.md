@@ -40,10 +40,10 @@ The goal of this initiative is to design and implement **365 FanZone**, a live s
 ## 4. Technical Architecture & Performance Specifications
 ```mermaid
 graph TD
-    Client[Mobile App / Web Client] -->|WebSockets| Gateway[API Gateway / Load Balancer]
-    Gateway -->|Publish Event| PubSub[Redis Pub/Sub Layer]
-    PubSub -->|Live State| Workers[Real-time Match Workers]
-    Workers -->|Write| Database[(PostgreSQL db)]
+    Client["Mobile App / Web Client"] -->|WebSockets| Gateway["API Gateway / Load Balancer"]
+    Gateway -->|Publish Event| PubSub["Redis Pub/Sub Layer"]
+    PubSub -->|Live State| Workers["Real-time Match Workers"]
+    Workers -->|Write| Database[("PostgreSQL Database")]
 ```
 * **Protocol**: WebSockets for low-latency chat transmission and server-sent events for live match score updates.
 * **Data Layer**: Redis for high-frequency chat buffers and PostgreSQL for user XP balances and leaderboards.
