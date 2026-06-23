@@ -3,316 +3,775 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Manager Case Study - 365Scores</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>365Scores FanZone - PM Case Study</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true, theme:'dark'});</script>
     <style>
         :root {
-    --bg-light: #0F172A;
-    --bg-secondary: #1E293B;
-    --card-bg: #1E293B;
-    --border: #334155;
-    --primary: #10B981;
-    --primary-hover: #059669;
-    --primary-glow: rgba(16, 185, 129, 0.15);
-    --text-main: #F8FAFC;
-    --text-muted: #94A3B8;
-    --success: #10B981;
-    --success-bg: #D1FAE5;
-    --font-heading: 'Inter', sans-serif;
-    --font-body: 'Inter', sans-serif;
-}
+            --bg-light: #0F172A;
+            --bg-secondary: #0A0F1D;
+            --card-bg: #141B2D;
+            --border: #1E293B;
+            --primary: #10B981;
+            --primary-hover: #059669;
+            --primary-glow: rgba(16, 185, 129, 0.15);
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --success: #10B981;
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
 
-body {
-    margin: 0;
-    font-family: var(--font-body);
-    background-color: var(--bg-secondary);
-    color: var(--text-main);
-    overflow-x: hidden;
-    line-height: 1.6;
-}
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            background-color: var(--bg-secondary);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-.background-decor {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(140px);
-    z-index: -1;
-    opacity: 0.08;
-}
-.blur-1 {
-    width: 400px;
-    height: 400px;
-    background: var(--primary);
-    top: -50px;
-    right: -50px;
-}
-.blur-2 {
-    width: 350px;
-    height: 350px;
-    background: #06B6D4;
-    bottom: -100px;
-    left: -100px;
-}
+        .background-decor {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            z-index: -1;
+            opacity: 0.12;
+        }
+        .blur-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            top: -100px;
+            right: -100px;
+        }
+        .blur-2 {
+            width: 400px;
+            height: 400px;
+            background: #06B6D4;
+            bottom: 200px;
+            left: -150px;
+        }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    background: var(--bg-light);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.25rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    font-family: var(--font-heading);
-}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            font-family: var(--font-heading);
+            letter-spacing: -0.5px;
+        }
 
-.logo-brand {
-    color: var(--primary);
-}
+        .logo-brand {
+            color: var(--primary);
+        }
 
-.gradient-text {
-    background: linear-gradient(135deg, var(--text-main), var(--primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-heading);
+        }
 
-.btn {
-    display: inline-block;
-    padding: 10px 24px;
-    border-radius: 9999px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    border: none;
-    font-family: var(--font-heading);
-}
+        .btn.primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
 
-.btn.primary {
-    background: var(--primary);
-    color: white;
-    box-shadow: 0 4px 14px var(--primary-glow);
-}
+        .btn.primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+        }
 
-.btn.primary:hover {
-    background: var(--primary-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(254, 94, 0, 0.3);
-}
+        .header-section {
+            background: radial-gradient(120% 120% at 50% 10%, var(--bg-light) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+        }
 
-.btn.large {
-    padding: 14px 36px;
-    font-size: 1.1rem;
-}
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            font-family: var(--font-heading);
+            letter-spacing: -1px;
+        }
 
-.intro-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 40px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
-}
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            max-width: 800px;
+        }
 
-h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 12px;
-    color: var(--text-main);
-    font-family: var(--font-heading);
-    letter-spacing: -0.5px;
-}
+        /* Tabs System */
+        .tabs-header {
+            display: flex;
+            gap: 15px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
 
-.subtitle {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    margin-bottom: 30px;
-    max-width: 800px;
-}
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: var(--font-heading);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
 
-.quick-links {
-    display: flex;
-    gap: 20px;
-}
+        .tab-btn:hover {
+            color: var(--primary);
+        }
 
-.quick-link {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    padding: 16px 28px;
-    border-radius: 12px;
-    text-decoration: none;
-    color: var(--text-main);
-    transition: all 0.2s ease;
-    flex: 1;
-}
+        .tab-btn.active {
+            color: var(--primary);
+            font-weight: 800;
+        }
 
-.quick-link:hover {
-    background: var(--bg-light);
-    border-color: var(--primary);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px 3px 0 0;
+        }
 
-.quick-link .icon {
-    font-size: 2rem;
-}
+        .tab-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            min-height: 500px;
+        }
 
-.quick-link div {
-    display: flex;
-    flex-direction: column;
-}
+        .hidden {
+            display: none !important;
+        }
 
-.quick-link strong {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text-main);
-}
+        /* Phone Mockup Layout */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 1fr 450px;
+            gap: 40px;
+            align-items: start;
+        }
 
-.quick-link span {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
+        @media (max-width: 968px) {
+            .layout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
-.tabs-header {
-    display: flex;
-    gap: 10px;
-    border-bottom: 2px solid var(--border);
-    margin-bottom: 25px;
-}
+        /* The Premium Device Mockup */
+        .phone-frame {
+            width: 375px;
+            height: 760px;
+            background: #000;
+            border-radius: 50px;
+            padding: 12px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(255,255,255,0.2);
+            border: 4px solid #1E293B;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
 
-.tab-btn {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    padding: 15px 25px;
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: var(--font-heading);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    position: relative;
-}
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #0F172A;
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+            color: #F8FAFC;
+        }
 
-.tab-btn:hover {
-    color: var(--primary);
-}
+        .phone-header {
+            height: 44px;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: #0B0F19;
+            z-index: 10;
+        }
 
-.tab-btn.active {
-    color: var(--primary);
-    font-weight: 800;
-}
+        .notch {
+            width: 110px;
+            height: 25px;
+            background: #000;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+            z-index: 20;
+        }
 
-.tab-btn.active::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--primary);
-}
+        /* App Mockup Screens */
+        .app-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative;
+        }
 
-.tab-content {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
-    min-height: 400px;
-}
+        .score-card {
+            background: linear-gradient(180deg, #0B0F19 0%, #1E293B 100%);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #334155;
+        }
 
-.hidden {
-    display: none;
-}
+        .league-title {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
 
-.content-body h1, .content-body h2, .content-body h3 {
-    margin-top: 35px;
-    color: var(--text-main);
-    font-family: var(--font-heading);
-}
+        .match-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
 
-.content-body h1 {
-    font-size: 2.2rem;
-    font-weight: 800;
-    border-bottom: 2px solid var(--border);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
+        .team-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
 
-.content-body h2 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
+        .team-logo {
+            width: 38px;
+            height: 38px;
+            background: #334155;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
 
-.content-body h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 12px;
-}
+        .team-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
 
-.content-body p, .content-body li {
-    color: var(--text-main);
-    font-size: 1.05rem;
-    margin-bottom: 15px;
-    line-height: 1.7;
-}
+        .score-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
 
-.content-body ul, .content-body ol {
-    padding-left: 24px;
-    margin-bottom: 20px;
-}
+        .score-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            font-family: var(--font-heading);
+        }
 
-.content-body li {
-    margin-bottom: 8px;
-}
+        .live-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
 
-.content-body strong {
-    color: var(--text-main);
-    font-weight: 600;
-}
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
 
-.content-body em {
-    color: var(--text-muted);
-    font-style: italic;
-}
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
 
-.content-body code {
-    background-color: var(--bg-secondary);
-    color: #EF4444;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: monospace;
-    font-size: 0.9em;
-}
+        .app-tabs {
+            display: flex;
+            background: #141B2D;
+            border-bottom: 1px solid #2A3547;
+        }
 
-.content-body hr {
-    border: 0;
-    height: 1px;
-    background: var(--border);
-    margin: 40px 0;
-}
+        .app-tab {
+            flex: 1;
+            padding: 12px 0;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #94A3B8;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
 
+        .app-tab.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            font-weight: 700;
+        }
+
+        /* FanZone Live Stream elements */
+        .fanzone-container {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .sentiment-card {
+            background: #1E293B;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .card-header-small {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #E2E8F0;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sentiment-bar-container {
+            height: 10px;
+            background: #475569;
+            border-radius: 9999px;
+            overflow: hidden;
+            display: flex;
+            margin: 10px 0;
+        }
+
+        .bar-left {
+            width: 55%;
+            background: var(--primary);
+            height: 100%;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bar-right {
+            width: 45%;
+            background: #EF4444;
+            height: 100%;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .vote-btns {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .vote-btn {
+            flex: 1;
+            padding: 6px 0;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid #475569;
+            background: transparent;
+            color: #F8FAFC;
+            transition: all 0.2s ease;
+        }
+
+        .vote-btn.left:hover {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--primary);
+        }
+
+        .vote-btn.right:hover {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #EF4444;
+        }
+
+        .prediction-alert {
+            background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(6,181,212,0.1) 100%);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .prediction-alert:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+        }
+
+        .alert-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .alert-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #FFF;
+        }
+
+        .alert-sub {
+            font-size: 0.65rem;
+            color: #10B981;
+            font-weight: 600;
+        }
+
+        .alert-action-btn {
+            background: var(--primary);
+            color: #FFF;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+        }
+
+        /* Chat view */
+        .chat-container {
+            background: #141B2D;
+            border: 1px solid #1E293B;
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 220px;
+            overflow-y: hidden;
+        }
+
+        .chat-msg {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-size: 0.75rem;
+            border-bottom: 1px solid #1E293B;
+            padding-bottom: 6px;
+        }
+
+        .chat-msg:last-child {
+            border-bottom: none;
+        }
+
+        .msg-meta {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .msg-author {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .msg-text {
+            color: #E2E8F0;
+        }
+
+        .chat-input-bar {
+            display: flex;
+            background: #1E293B;
+            border-radius: 8px;
+            padding: 6px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 0.75rem;
+            padding: 4px;
+            outline: none;
+        }
+
+        /* Modal Overlay for Screen 2 */
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 100;
+            display: flex;
+            align-items: flex-end;
+            transition: all 0.3s ease;
+        }
+
+        .bottom-sheet {
+            width: 100%;
+            background: #1E293B;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            padding: 24px;
+            box-sizing: border-box;
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bottom-sheet.open {
+            transform: translateY(0);
+        }
+
+        .bottom-sheet h3 {
+            margin-top: 0;
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-align: center;
+            color: #FFF;
+        }
+
+        .prediction-box-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .option-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn.yes {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .option-btn.yes:hover {
+            background: var(--primary-hover);
+        }
+
+        .option-btn.no {
+            background: transparent;
+            border: 1px solid #475569;
+            color: #94A3B8;
+        }
+
+        /* Leaderboard Screen 3 */
+        .leaderboard-container {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .user-rank-banner {
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            border: 1px solid var(--primary);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .rank-title {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .rank-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: var(--font-heading);
+        }
+
+        .progress-bar-wrap {
+            height: 6px;
+            background: #334155;
+            border-radius: 9999px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-bar-fill {
+            width: 75%;
+            background: var(--primary);
+            height: 100%;
+        }
+
+        .leaderboard-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #141B2D;
+            border: 1px solid #1E293B;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+
+        .leaderboard-item.highlight {
+            border-color: var(--primary);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .item-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rank-badge {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 800;
+        }
+
+        .rank-badge.gold { background: #D97706; }
+        .rank-badge.silver { background: #94A3B8; }
+        .rank-badge.bronze { background: #B45309; }
+
+        .item-name {
+            font-weight: 600;
+        }
+
+        .item-pts {
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        /* Markdown styling additions */
+        .content-body h1, .content-body h2, .content-body h3 {
+            margin-top: 35px;
+            color: var(--text-main);
+            font-family: var(--font-heading);
+        }
+
+        .content-body h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .content-body h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .content-body p, .content-body li {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .content-body ul {
+            padding-left: 24px;
+            margin-bottom: 20px;
+        }
+
+        .content-body li {
+            margin-bottom: 8px;
+        }
+
+        .content-body hr {
+            border: 0;
+            height: 1px;
+            background: var(--border);
+            margin: 40px 0;
+        }
     </style>
 </head>
 <body>
@@ -322,109 +781,318 @@ h1 {
     <header class="navbar">
         <div class="logo">
             <img src="https://logo.clearbit.com/365scores.com" alt="365Scores Logo" style="height: 32px; width: auto; object-fit: contain; border-radius: 4px; display: inline-block;" onerror="this.style.display='none';">
-            <span class="logo-brand">365scores</span> | PM Portfolio Application
+            <span class="logo-brand">365scores</span> | PM Swarm Portfolio
         </div>
         <div class="actions">
-            <a href="https://stitch.withgoogle.com/projects/17838179069023951856" target="_blank" class="btn primary">View Stitch Prototypes</a>
+            <a href="https://stitch.withgoogle.com/projects/17838179069023951856" target="_blank" class="btn primary">View Stitch Workspace</a>
         </div>
     </header>
     
     <main class="container">
-        <section class="intro-card">
-            <h1>Product Management Strategy & Artifacts</h1>
-            <p class="subtitle">Prepared for the Product Manager role at 365Scores. Complete with Market Investigation, product ideation, detailed PRD, and design layouts.</p>
-            
-            <div class="quick-links">
-                <a href="https://stitch.withgoogle.com/projects/17838179069023951856" target="_blank" class="quick-link">
-                    <span class="icon">🎨</span>
-                    <div>
-                        <strong>Stitch Workspace</strong>
-                        <span>Review screen mockups and design system rules</span>
-                    </div>
-                </a>
-            </div>
+        <section class="header-section">
+            <h1>365 FanZone: Live Social & gamified predictions</h1>
+            <p class="subtitle">An expanded case study detailing a live interactive layer designed to double fan session duration, increase 30-day retention, and build community hubs directly in 365Scores.</p>
         </section>
         
         <div class="tabs-header">
-            <button class="tab-btn active" onclick="switchTab('investigation')">1. Market Investigation</button>
-            <button class="tab-btn" onclick="switchTab('prd')">2. Product Requirement Document (PRD)</button>
-            <button class="tab-btn" onclick="switchTab('design')">3. Design Guidelines</button>
+            <button class="tab-btn active" id="btn-investigation" onclick="switchTab('investigation')">1. Extended Research</button>
+            <button class="tab-btn" id="btn-prd" onclick="switchTab('prd')">2. Detailed PRD & Tech Spec</button>
+            <button class="tab-btn" id="btn-mockup" onclick="switchTab('mockup')">3. Live Interactive Device Mockup</button>
         </div>
         
+        <!-- Tab 1: Extended Research -->
         <section class="tab-content" id="investigation">
             <div class="content-body">
-                <h1>365Scores - Comprehensive Investigation Report</h1>
-
+                <h1>365Scores - Comprehensive Market & Product Investigation Report</h1>
 <h2>1. Executive Summary & Value Proposition</h2>
-<p>365Scores is a leading global sports media platform delivering real-time scores, statistics, news, and personalized sports updates to millions of fans worldwide. Founded in 2012, its core value proposition is <strong>hyper-personalized real-time updates</strong>. The platform allows users to select their favorite teams, leagues, and players, tailoring push notifications to deliver goals, cards, half-time updates, and player news within seconds of occurrence.</p>
-
-<h2>2. Target Users & Personas</h2>
+<p>365Scores is a premier global sports media company providing real-time scores, stats, news, and personalized updates to over 40 million active sports fans. Founded in 2012 and subsequently acquired by Entain in 2023 for $150M, the platform's core value proposition is <strong>ultra-low-latency, hyper-personalized real-time updates</strong>.</p>
+<p>By tracking favorite teams, players, and leagues, users receive granular push notifications (such as goals, bookings, VAR decisions, and score changes) within 1.5 to 5 seconds of the event on the field. This immediacy has made it an essential utility for second-screen viewing and live sports engagement.</p>
+<h2>2. Target Users & Segment Personas</h2>
+<p>To maximize growth, 365Scores targets distinct user segments with varying levels of engagement and analytical needs:</p>
+<h3>Persona A: Fanatic Frank (The Hyper-Engaged Second-Screen Supporter)</h3>
 <ul>
-<li><strong>Fanatic Frank (The Hyper-Engaged Fan)</strong>: Frank is a die-hard football fan who follows multiple European leagues. He wants to know every score, substitution, and card immediately. He uses 365Scores to follow his teams when he cannot watch the live broadcast, relying on instant notifications and live match trackers.</li>
-<li><strong>Bettor Brandon (The Analytical Speculator)</strong>: Brandon is a sports bettor who looks for deep, historical data and real-time form indicators. He uses 365Scores to check head-to-head records, starting lineups, injury updates, and player statistics to make informed pre-match and in-play bets.</li>
+<li><strong>Demographics</strong>: 24-year-old software engineer, active social media user, football season ticket holder.</li>
+<li><strong>Goals</strong>: Stay updated on all live events across 4 different European leagues simultaneously, share updates with friends, and participate in online fan discussions.</li>
+<li><strong>Pain Points</strong>: Inability to watch every match live due to streaming rights or scheduling; feels isolated when watching games alone.</li>
+<li><strong>Daily Journey</strong>: Checks the app pre-match for lineups, sets push alerts, monitors the live match tracker during play, and reads post-match summaries.</li>
 </ul>
-<h2>3. User Reviews & Pain Points</h2>
+<h3>Persona B: Bettor Brandon (The High-Stakes Analytical Speculator)</h3>
 <ul>
-<li><strong>Ad Clutter</strong>: A major pain point is the heavy presence of intrusive ads, which sometimes slow down the app or disrupt the user experience.</li>
-<li><strong>Engagement Saturation</strong>: Beyond basic real-time alerts, fans feel that the app is highly transactional; they check it for 10 seconds, get the score, and close it. There is a lack of social connection and interactive engagement during matches.</li>
-<li><strong>Delayed Media / Video Highlights</strong>: While real-time stats are instant, rich media content (like goals and highlight clips) is often delayed or region-locked.</li>
+<li><strong>Demographics</strong>: 34-year-old finance professional, avid fantasy sports player, weekly active sports bettor.</li>
+<li><strong>Goals</strong>: Find deep historical statistics, real-time momentum shifts (e.g., possession graphs, attacking pressure), line-up confirmations, and player physical statistics to place informed in-play bets.</li>
+<li><strong>Pain Points</strong>: Needs consolidated data feeds; hates switching between multiple stat apps and sportsbook apps.</li>
+<li><strong>Daily Journey</strong>: Analyzes head-to-head records, monitors odds movements, tracks live player statistics, and validates match progression metrics.</li>
 </ul>
-<h2>4. Key Markets & Competitors</h2>
+<h2>3. User Reviews & Product Friction Points</h2>
+<p>A comprehensive review of app store feedback reveals three primary categories of user pain points:</p>
+<ol>
+<li><strong>Ad Saturation & Intrusiveness</strong>: Heavy ad networks cause interface lag, block critical statistical views, and disrupt the core utility of checking live scores.</li>
+<li><strong>Transactional User Retention</strong>: Users treat the app as a "utility" rather than a "destination." They open the app, spend 10 seconds checking a score, and close it. Session duration is low.</li>
+<li><strong>Lack of Social Community</strong>: Sports are inherently social. Currently, there are no features linking active fans watching the same match, forcing them to use third-party social networks (X/Twitter, Reddit) for live banter.</li>
+</ol>
+<h2>4. Market & Competitor Analysis</h2>
+<p>365Scores operates in a highly competitive sports tracking landscape. Below is a comparative review of its primary rivals:</p>
+<div style='overflow-x:auto;'><table style='width:100%; border-collapse: collapse; margin: 20px 0;'>
+<thead><tr><th style='border: 1px solid #334155; padding: 12px; background: #1E293B; color: #F8FAFC; text-align:left;'>Competitor</th><th style='border: 1px solid #334155; padding: 12px; background: #1E293B; color: #F8FAFC; text-align:left;'>Core Strengths</th><th style='border: 1px solid #334155; padding: 12px; background: #1E293B; color: #F8FAFC; text-align:left;'>Key Weaknesses</th><th style='border: 1px solid #334155; padding: 12px; background: #1E293B; color: #F8FAFC; text-align:left;'>Strategic Opportunity for 365Scores</th></tr></thead><tbody>
+<tr><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'><strong>FotMob</strong></td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>Clean, ad-free UI; fast updates; great audio comments</td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>Focuses almost entirely on football (soccer); basic social features</td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>Multi-sport depth combined with live social engagement features</td></tr>
+<tr><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'><strong>SofaScore</strong></td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>Advanced heatmaps, rating graphs, deep analytical indexes</td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>Steeper learning curve; dry, technical user experience</td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>Gamified user experience that appeals to mainstream fans</td></tr>
+<tr><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'><strong>Flashscore</strong></td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>Massive league coverage; highly reliable score updates</td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>Visual design feels dated; minimal community interaction</td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>Premium modern design language and interactive community features</td></tr>
+</tbody></table></div>
+<h2>5. Visual Identity & Brand Design Language</h2>
+<p>365Scores has refreshed its brand identity towards a premium, high-contrast digital look:</p>
 <ul>
-<li><strong>Key Markets</strong>: 365Scores has a strong footprint in Europe, Latin America, and the Middle East, catering to soccer, basketball, tennis, and cricket fans.</li>
-<li><strong>Competitors</strong>:</li>
-<ul>
-<li><strong>Flashscore</strong>: Strong in global coverage and simple, fast stats, but less personalized.</li>
-<li><strong>SofaScore</strong>: High-quality heatmaps and player ratings, attracting analytical users.</li>
-<li><strong>FotMob</strong>: Extremely clean UI/UX and rich audio commentaries, though focused primarily on soccer.</li>
+<li><strong>Background & Themes</strong>: Dark-first palette (<code>#0F172A</code> deep navy and <code>#1E293B</code> card backgrounds) to match the dark aesthetic preferred by night-time sports viewers.</li>
+<li><strong>Primary Accent Color</strong>: A vibrant <strong>emerald/pitch green (#10B981)</strong> representing the sports field and active live indicators.</li>
+<li><strong>Typography</strong>: Highly legible sans-serif font family (<code>Inter</code>) to support extensive tables of numbers and data.</li>
 </ul>
-</ul>
-<h2>5. Existing Design & Platform Analysis</h2>
-<ul>
-<li><strong>Platforms</strong>: iOS, Android, and Web.</li>
-<li><strong>Brand Identity</strong>: 365Scores features a sleek, high-contrast dark theme (deep dark slate/navy and white) with a vibrant <strong>neon green/emerald green accent (#10B981)</strong> for live match indicators, scores, and active states. It provides an energetic, modern sports arena atmosphere.</li>
-<li><strong>Typography</strong>: Uses modern sans-serif fonts (such as Roboto and Inter) to ensure maximum legibility for dense statistics.</li>
-</ul>
-<h2>6. Potential Business Opportunities</h2>
-<ul>
-<li><strong>365 FanZone</strong>: Introduce interactive live chat rooms, crowd sentiment polling, and live predictions to transition the app from a passive scorecard to an active social sports hub.</li>
-<li><strong>Premium Tier Ad-Free Subscription</strong>: Introduce a competitive premium tier with exclusive insights, analytical projections, and ad-free browsing.</li>
-</ul>
+<h2>6. Business Growth Model & Opportunities</h2>
+<p>To double engagement and revenue, 365Scores must shift from a passive scoreboard to an active community:</p>
+<ol>
+<li><strong>Gamified FanZones</strong>: Capitalize on live user attention during matches. Integrating micro-predictions and fan chat rooms directly into live scorecards will drive average session duration from 45 seconds to over 10 minutes.</li>
+<li><strong>Premium Subscriptions</strong>: Introduce a low-cost premium tier that removes ads and unlocks advanced statistical analytics.</li>
+</ol>
             </div>
         </section>
         
+        <!-- Tab 2: Detailed PRD -->
         <section class="tab-content hidden" id="prd">
             <div class="content-body">
                 <h1>Product Requirements Document (PRD)</h1>
-
-<h2>1. Executive Summary</h2>
-<p>Introduce <strong>365 FanZone: Live Social Hub & Predictions</strong>, a new interactive feature suite within 365Scores designed to transform passive score checking into an active, social community experience. By enabling synchronized chat rooms, live polls, and micro-predictions, 365Scores will increase daily active user (DAU) session duration and boost retention.</p>
-
-<h2>2. Personas & Use Cases</h2>
+<h2>1. Executive Summary & Strategic Goals</h2>
+<p>The goal of this initiative is to design and implement <strong>365 FanZone</strong>, a live social engagement layer for the 365Scores mobile app. FanZone allows fans watching the same live match to join instant chat rooms, cast votes in live sentiment polls, and participate in micro-predictions.</p>
 <ul>
-<li><strong>Fanatic Frank</strong>: Wants to share his excitement or frustration with other fans in real-time during a major derby. He joins the Match FanZone Chat and interacts with poll questions.</li>
-<li><strong>Bettor Brandon</strong>: Wants to gauge crowd sentiment before placing a live bet. He checks the Live Sentiment Meter and prediction stats.</li>
+<li><strong>Target Metric</strong>: Increase Daily Active User (DAU) average session duration by 150%.</li>
+<li><strong>Secondary Metric</strong>: Boost 30-day user retention rates by 12% through gamification and social connection.</li>
 </ul>
-<h2>3. Product Scope & Functional Requirements</h2>
+<h2>2. User Stories & Acceptance Criteria</h2>
 <ul>
-<li><strong>Live Match FanZone</strong>: A dedicated tab in the match details view.</li>
-<li><strong>Live Sentiment Meter</strong>: Real-time poll asking 'Who will win?' or 'Who will score next?' with animated results.</li>
-<li><strong>Prediction Leaderboard</strong>: A gamified leaderboard showing users with the most accurate predictions, rewarding them with badges.</li>
+<li><strong>US-1: Live Chat Participation</strong></li>
+<li><em>As a</em> Fanatic Frank,</li>
+<li><em>I want to</em> participate in a live chat stream with other supporters during a match,</li>
+<li><em>So that</em> I can share real-time reactions and banter.</li>
+<li><strong>Acceptance Criteria</strong>:</li>
+<li>Chat updates in real-time under the "FanZone" tab with less than 200ms latency.</li>
+<li>Users can view messages, send text messages, and use customized sports emojis.</li>
+<li>Includes badging indicating team allegiance.</li>
+<li><strong>US-2: Micro-Predictions</strong></li>
+<li><em>As an</em> Analytical Brandon,</li>
+<li><em>I want to</em> predict live micro-events (e.g., next goal scorer, next card) during play,</li>
+<li><em>So that</em> I can test my knowledge and earn leaderboards points.</li>
+<li><strong>Acceptance Criteria</strong>:</li>
+<li>Alerts/Polls slide up as modals when triggered by a match moderator or automatic event trigger.</li>
+<li>Predictions lock within 10 seconds of creation or upon match events.</li>
+<li>Correct predictions instantly credit the user with XP (Experience Points).</li>
 </ul>
-<h2>4. Non-Functional Requirements</h2>
+<h2>3. Detailed Feature Specifications & Design Layouts</h2>
+<h3>Feature A: Match FanZone tab</h3>
 <ul>
-<li><strong>Low Latency</strong>: FanZone chat and polls must sync within 500ms of game events.</li>
-<li><strong>Accessibility</strong>: High contrast text and aria-labels for match status.</li>
+<li><strong>Layout</strong>: Rendered alongside Info, Lineups, and Stats.</li>
+<li><strong>Sub-components</strong>: Live Sentiment Meter showing crowd prediction percentages (e.g., Real Madrid 55% vs Barcelona 45%) and a scrollable chat thread.</li>
 </ul>
+<h3>Feature B: Live Prediction Modals</h3>
+<ul>
+<li><strong>Trigger</strong>: Automated alerts based on game events (e.g., a penalty awarded triggers a popup: "Will he score?").</li>
+<li><strong>UX Flow</strong>: A bottom sheet modal slides up, displaying options (Yes/No), XP reward, and a countdown timer.</li>
+</ul>
+<h3>Feature C: FanZone Leaderboard</h3>
+<ul>
+<li><strong>Metrics</strong>: Users earn XP for votes, chats, and successful predictions.</li>
+<li><strong>UX Flow</strong>: Renders top 3 users with gold/silver/bronze badges, user's current rank, and progress bar to next level.</li>
+</ul>
+<h2>4. Technical Architecture & Performance Specifications</h2>
+<pre class='mermaid'>
+graph TD
+    Client[Mobile App / Web Client] -->|WebSockets| Gateway[API Gateway / Load Balancer]
+    Gateway -->|Publish Event| PubSub[Redis Pub/Sub Layer]
+    PubSub -->|Live State| Workers[Real-time Match Workers]
+    Workers -->|Write| Database[(PostgreSQL db)]
+</pre>
+<ul>
+<li><strong>Protocol</strong>: WebSockets for low-latency chat transmission and server-sent events for live match score updates.</li>
+<li><strong>Data Layer</strong>: Redis for high-frequency chat buffers and PostgreSQL for user XP balances and leaderboards.</li>
+<li><strong>Scaling</strong>: Support up to 100,000 concurrent active users per major match room.</li>
+</ul>
+<h2>5. Product Analytics & Instrumentation Plan</h2>
+<p>To measure feature success, the following events must be logged:</p>
+<div style='overflow-x:auto;'><table style='width:100%; border-collapse: collapse; margin: 20px 0;'>
+<thead><tr><th style='border: 1px solid #334155; padding: 12px; background: #1E293B; color: #F8FAFC; text-align:left;'>Event Name</th><th style='border: 1px solid #334155; padding: 12px; background: #1E293B; color: #F8FAFC; text-align:left;'>Trigger Event</th><th style='border: 1px solid #334155; padding: 12px; background: #1E293B; color: #F8FAFC; text-align:left;'>Parameters Captured</th><th style='border: 1px solid #334155; padding: 12px; background: #1E293B; color: #F8FAFC; text-align:left;'>Key Success Target</th></tr></thead><tbody>
+<tr><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'><code>fanzone_joined</code></td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>User clicks the FanZone match tab</td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'><code>match_id</code>, <code>user_id</code>, <code>allegiance</code></td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>40% of match viewers join</td></tr>
+<tr><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'><code>poll_voted</code></td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>User submits a prediction or sentiment vote</td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'><code>poll_id</code>, <code>match_id</code>, <code>vote_option</code></td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>Average 3 votes per user</td></tr>
+<tr><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'><code>xp_gained</code></td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>User receives XP for a correct prediction</td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'><code>amount</code>, <code>source</code>, <code>new_balance</code></td><td style='border: 1px solid #334155; padding: 12px; color: #F8FAFC;'>80% user engagement with XP systems</td></tr>
+</tbody></table></div>
             </div>
         </section>
         
-        <section class="tab-content hidden" id="design">
-            <div class="content-body">
-                <h2>Design System Strategy & Prototypes</h2>
-                <p>An interactive high-fidelity mockup has been generated within Stitch based on the product requirements. You can review the structure of the layout, responsive constraints, and colors using the workspace link below:</p>
-                <div style="text-align: center; margin: 40px 0;">
-                    <a href="https://stitch.withgoogle.com/projects/17838179069023951856" target="_blank" class="btn large primary">Open Stitch Interactive Editor</a>
+        <!-- Tab 3: Interactive Mockup -->
+        <section class="tab-content hidden" id="mockup">
+            <div class="layout-grid">
+                <div>
+                    <h2>Interactive Mobile User Experience</h2>
+                    <p>Experience the 365 FanZone user flow directly in this high-fidelity interactive device mockup. Built on top of 365Scores' design language, the interface showcases the Live Match FanZone view, voting interactions, and user gamified levels.</p>
+                    <h3>Interactive Checklist:</h3>
+                    <ul>
+                        <li><strong>Vote on Match Outcome</strong>: Cast your vote for Real Madrid or Barcelona and watch the animated live Sentiment Meter update instantly!</li>
+                        <li><strong>Micro-Prediction Trigger</strong>: Click the live alert banner <em>"Predict Live Match Event"</em> to trigger the bottom sheet modal. Choose "Yes" or "No" to participate.</li>
+                        <li><strong>Leaderboard Tracking</strong>: Open the <em>Leaderboard</em> tab to inspect user positions, badges, and progression indicators.</li>
+                    </ul>
+                    <div style="margin-top: 30px;">
+                        <a href="https://stitch.withgoogle.com/projects/17838179069023951856" target="_blank" class="btn primary">
+                            Edit Design Tokens in Stitch
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <!-- Mobile phone frame -->
+                    <div class="phone-frame">
+                        <div class="notch"></div>
+                        <div class="phone-screen">
+                            <div class="phone-header">
+                                <span>18:15</span>
+                                <span>365Scores Live</span>
+                            </div>
+                            
+                            <!-- Screen 1: Real Madrid vs Barcelona -->
+                            <div class="app-body" id="screen-main">
+                                <div class="score-card">
+                                    <div class="league-title">La Liga • Matchday 32</div>
+                                    <div class="match-row">
+                                        <div class="team-box">
+                                            <div class="team-logo">RM</div>
+                                            <span class="team-name">Real Madrid</span>
+                                        </div>
+                                        <div class="score-box">
+                                            <span class="score-num">2 - 1</span>
+                                            <span class="live-badge"><span class="live-dot"></span> 82' Live</span>
+                                        </div>
+                                        <div class="team-box">
+                                            <div class="team-logo" style="background:#0F172A; border: 1px solid #334155;">FCB</div>
+                                            <span class="team-name">Barcelona</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="app-tabs">
+                                    <div class="app-tab" onclick="switchAppTab('info')">INFO</div>
+                                    <div class="app-tab active" id="fanzone-tab" onclick="switchAppTab('fanzone')">FANZONE</div>
+                                    <div class="app-tab" id="leaderboard-tab" onclick="switchAppTab('leaderboard')">LEADERBOARD</div>
+                                </div>
+                                
+                                <!-- FanZone Tab Content -->
+                                <div class="fanzone-container" id="fanzone-content">
+                                    <!-- Sentiment meter -->
+                                    <div class="sentiment-card">
+                                        <div class="card-header-small">
+                                            <span>LIVE SENTIMENT</span>
+                                            <span id="sentiment-stats" style="color:var(--primary); font-weight:700;">55% RM - 45% FCB</span>
+                                        </div>
+                                        <div class="sentiment-bar-container">
+                                            <div class="bar-left" id="bar-left"></div>
+                                            <div class="bar-right" id="bar-right"></div>
+                                        </div>
+                                        <div class="vote-btns">
+                                            <button class="vote-btn left" onclick="vote('rm')">Vote Real Madrid</button>
+                                            <button class="vote-btn right" onclick="vote('fcb')">Vote Barcelona</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Automatic alert trigger -->
+                                    <div class="prediction-alert" onclick="openPredictionSheet()">
+                                        <div class="alert-details">
+                                            <span class="alert-title">Predict Live Event!</span>
+                                            <span class="alert-sub">Will Vinicius Jr score next?</span>
+                                        </div>
+                                        <button class="alert-action-btn">Predict +50 XP</button>
+                                    </div>
+                                    
+                                    <!-- Chat thread -->
+                                    <div class="chat-container">
+                                        <div class="chat-msg">
+                                            <div class="msg-meta">
+                                                <span class="msg-author">Madridista99 👑</span>
+                                                <span style="color:#64748B;">18:14</span>
+                                            </div>
+                                            <span class="msg-text">HALA MADRID! Incredible assist by Modric!</span>
+                                        </div>
+                                        <div class="chat-msg">
+                                            <div class="msg-meta">
+                                                <span class="msg-author" style="color:#06B6D4;">FCB_Fan10 🔵🔴</span>
+                                                <span style="color:#64748B;">18:14</span>
+                                            </div>
+                                            <span class="msg-text">That was never a corner kick before the goal...</span>
+                                        </div>
+                                        <div class="chat-msg">
+                                            <div class="msg-meta">
+                                                <span class="msg-author">BettorBob 📈</span>
+                                                <span style="color:#64748B;">18:15</span>
+                                            </div>
+                                            <span class="msg-text">Putting my coins on Vinicius Jr scoring next.</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="chat-input-bar">
+                                        <input type="text" class="chat-input" placeholder="Join the discussion...">
+                                    </div>
+                                </div>
+                                
+                                <!-- Leaderboard Tab Content -->
+                                <div class="leaderboard-container hidden" id="leaderboard-content">
+                                    <div class="user-rank-banner">
+                                        <span class="rank-title">Your Current Status</span>
+                                        <div class="rank-num">Rank #42</div>
+                                        <div style="font-size:0.75rem; color:#E2E8F0; margin-top:4px;">Level 8 • 1,250 / 1,500 XP</div>
+                                        <div class="progress-bar-wrap">
+                                            <div class="progress-bar-fill" id="xp-progress"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="leaderboard-list">
+                                        <div class="leaderboard-item">
+                                            <div class="item-left">
+                                                <span class="rank-badge gold">1</span>
+                                                <span class="item-name">SuperPredictor 🏆</span>
+                                            </div>
+                                            <span class="item-pts">2,400 XP</span>
+                                        </div>
+                                        <div class="leaderboard-item">
+                                            <div class="item-left">
+                                                <span class="rank-badge silver">2</span>
+                                                <span class="item-name">SoccerGuru</span>
+                                            </div>
+                                            <span class="item-pts">2,150 XP</span>
+                                        </div>
+                                        <div class="leaderboard-item">
+                                            <div class="item-left">
+                                                <span class="rank-badge bronze">3</span>
+                                                <span class="item-name">GoalStriker</span>
+                                            </div>
+                                            <span class="item-pts">1,980 XP</span>
+                                        </div>
+                                        <div class="leaderboard-item highlight">
+                                            <div class="item-left">
+                                                <span class="rank-badge" style="background:var(--primary)">42</span>
+                                                <span class="item-name">You (Guest)</span>
+                                            </div>
+                                            <span class="item-pts" id="user-xp-display">1,250 XP</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Bottom Sheet Prediction Modal -->
+                            <div class="modal-overlay hidden" id="prediction-modal-overlay">
+                                <div class="bottom-sheet" id="prediction-bottom-sheet">
+                                    <h3>LIVE MATCH PREDICTION</h3>
+                                    <p style="font-size:0.75rem; text-align:center; color:#94A3B8; margin-top:4px;">Real Madrid vs Barcelona • 83'</p>
+                                    <h4 style="text-align:center; font-size:0.9rem; margin:15px 0;">Will Vinicius Jr score the next goal?</h4>
+                                    <div class="prediction-box-options">
+                                        <button class="option-btn yes" onclick="submitPrediction(true)">YES (+50 XP)</button>
+                                        <button class="option-btn no" onclick="submitPrediction(false)">NO</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -435,7 +1103,72 @@ h1 {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             document.getElementById(tabId).classList.remove('hidden');
-            event.currentTarget.classList.add('active');
+            
+            if (tabId === 'investigation') {
+                document.getElementById('btn-investigation').classList.add('active');
+            } else if (tabId === 'prd') {
+                document.getElementById('btn-prd').classList.add('active');
+            } else if (tabId === 'mockup') {
+                document.getElementById('btn-mockup').classList.add('active');
+            }
+        }
+
+        function switchAppTab(tabId) {
+            if (tabId === 'fanzone') {
+                document.getElementById('fanzone-content').classList.remove('hidden');
+                document.getElementById('leaderboard-content').classList.add('hidden');
+                document.getElementById('fanzone-tab').classList.add('active');
+                document.getElementById('leaderboard-tab').classList.remove('active');
+            } else if (tabId === 'leaderboard') {
+                document.getElementById('fanzone-content').classList.add('hidden');
+                document.getElementById('leaderboard-content').classList.remove('hidden');
+                document.getElementById('fanzone-tab').classList.remove('active');
+                document.getElementById('leaderboard-tab').classList.add('active');
+            }
+        }
+
+        // Interactive states
+        let votesRM = 55;
+        let votesFCB = 45;
+        let userXP = 1250;
+
+        function vote(team) {
+            if (team === 'rm') {
+                votesRM += 3;
+            } else {
+                votesFCB += 3;
+            }
+            let total = votesRM + votesFCB;
+            let percentRM = Math.round((votesRM / total) * 100);
+            let percentFCB = 100 - percentRM;
+            
+            document.getElementById('bar-left').style.width = percentRM + '%';
+            document.getElementById('bar-right').style.width = percentFCB + '%';
+            document.getElementById('sentiment-stats').innerText = percentRM + '% RM - ' + percentFCB + '% FCB';
+        }
+
+        function openPredictionSheet() {
+            document.getElementById('prediction-modal-overlay').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('prediction-bottom-sheet').classList.add('open');
+            }, 50);
+        }
+
+        function closePredictionSheet() {
+            document.getElementById('prediction-bottom-sheet').classList.remove('open');
+            setTimeout(() => {
+                document.getElementById('prediction-modal-overlay').classList.add('hidden');
+            }, 300);
+        }
+
+        function submitPrediction(votedYes) {
+            if (votedYes) {
+                userXP += 50;
+                document.getElementById('user-xp-display').innerText = userXP + ' XP';
+                document.getElementById('xp-progress').style.width = ((userXP - 1000) / 500 * 100) + '%';
+                alert('Prediction registered! +50 XP added to your lobby wallet.');
+            }
+            closePredictionSheet();
         }
     </script>
 </body>
